@@ -13,17 +13,45 @@ struct LongPressGestureBootCamp: View {
     
     var body: some View {
         VStack {
-            Text(isComplete ? "Complete!" : "Not Complete!")
-                .padding()
-                .padding(.horizontal)
-                .background(isComplete ? Color.green : Color.red)
-                .cornerRadius(10)
+            Rectangle()
+                .fill(Color.blue)
+                .frame(maxWidth: 10)
+                .frame(height: 55)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color.gray)
+            HStack {
+                Text("Click Here")
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.black)
+                    .cornerRadius(10)
+                
+                
+                Text("Reset")
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.black)
+                    .cornerRadius(10)
+
+                                
+                            }
+                            
+                        }
+                    }
+                
+                
+                
+                
+                
+                
+                
             
-        }
+        
+    
+}
+    #Preview {
+        LongPressGestureBootCamp()
     }
-}
-#Preview {
-    LongPressGestureBootCamp()
-}
+    
     
 
