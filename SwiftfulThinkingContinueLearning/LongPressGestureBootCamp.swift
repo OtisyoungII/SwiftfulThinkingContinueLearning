@@ -10,12 +10,14 @@ import SwiftUI
 struct LongPressGestureBootCamp: View {
     
     @State var isComplete: Bool = false
+    @State var isSuccess: Bool = false
+    
     
     var body: some View {
         VStack {
             Rectangle()
-                .fill(Color.blue)
-                .frame(maxWidth: 10)
+                .fill(isSuccess ? Color.green : Color.blue)
+                .frame(maxWidth: isComplete ? .infinity : 0)
                 .frame(height: 55)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(Color.gray)
@@ -25,6 +27,10 @@ struct LongPressGestureBootCamp: View {
                     .padding()
                     .background(Color.black)
                     .cornerRadius(10)
+                    .onLongPressGesture(minimumDuration: 1.0, maximumDistance: 50) {
+                            }
+                    }
+
                 
                 
                 Text("Reset")
@@ -48,7 +54,7 @@ struct LongPressGestureBootCamp: View {
             
         
     
-}
+
     #Preview {
         LongPressGestureBootCamp()
     }
