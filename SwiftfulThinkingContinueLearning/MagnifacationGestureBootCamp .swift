@@ -21,16 +21,19 @@ struct MagnifacationGestureBootCamp_: View {
                 Image(systemName: "ellipsis")
             }
             .padding(.horizontal)
-            Rectangle().frame(height:300)
+            Rectangle()
+                .frame(height:300)
+                .scaleEffect(1 + currentAmount)
                 .gesture(
                     MagnificationGesture()
                         .onChanged { value in
                         currentAmount = value - 1
                         }
                         .onEnded { value in
-                            currentAmount = 0
+                            withAnimation(.spring()) {
+                                currentAmount = 0
+                            }
                         }
-                    
                 )
             HStack {
                 Image(systemName: "heart.fill")
