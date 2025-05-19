@@ -7,12 +7,38 @@
 
 import SwiftUI
 
-struct Moods: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+enum Mood: String {
+    case happy, sad, neutral, anxious, energized
+
+    var description: String {
+        switch self {
+        case .happy: return "Happy"
+        case .sad: return "Sad"
+        case .neutral: return "Neutral"
+        case .anxious: return "Anxious"
+        case .energized: return "Energized"
+        }
+    }
+
+    var emoji: String {
+        switch self {
+        case .happy: return "😊"
+        case .sad: return "😢"
+        case .neutral: return "😐"
+        case .anxious: return "😰"
+        case .energized: return "⚡️"
+        }
     }
 }
 
+struct MoodIcon: View {
+    let mood: Mood
+
+    var body: some View {
+        Text(mood.emoji)
+            .font(.largeTitle)
+    }
+}
 #Preview {
-    Moods()
+    
 }
