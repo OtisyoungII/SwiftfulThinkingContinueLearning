@@ -23,3 +23,6 @@ func colorForMood(_ mood: String) -> String {
         return "Neutral"
     }
 }
+#Preview {
+    
+}

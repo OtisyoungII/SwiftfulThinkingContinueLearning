@@ -7,6 +7,9 @@
 
 import WatchKit
 
-class Permissions: NSObject {
+let HealthStore = HKHealthStore()
 
+func requestAuthorization() {
+    let typestoread: Set<HKQuantityType
+        
 }

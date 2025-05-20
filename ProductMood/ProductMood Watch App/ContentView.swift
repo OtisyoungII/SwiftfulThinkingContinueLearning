@@ -71,7 +71,6 @@ struct HomeView: View {
         activityLevel = 63
         currentMood = .happy
     }
-}
 
 //struct ContentView: View {
 //    var body: some View {
