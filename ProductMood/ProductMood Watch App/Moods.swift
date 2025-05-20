@@ -7,12 +7,19 @@
 
 import SwiftUI
 
-struct Moods: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+func colorForMood(_ mood: String) -> String {
+    switch mood {
+    case "Happy":
+        return "Happy"
+    case "Sad":
+        return "Sad"
+    case "Angry":
+        return "Angry"
+    case "Calm":
+        return "Calm"
+    case "Nervous":
+        return "Nervous"
+    default:
+        return "Neutral"
     }
-}
-
-#Preview {
-    Moods()
 }

@@ -5,19 +5,85 @@
 //  Created by Otis Young on 5/6/25.
 //
 
-import SwiftUI
 
-struct ContentView: View {
+
+
+
+
+import SwiftUI
+import HealthKit
+
+
+
+
+
+
+struct HomeView: View {
+    @State private var currentMood: Mood = .neutral
+    @State private var sleepScore: Int = 0
+    @State private var activityLevel: Int = 0
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            VStack(spacing: 10) {
+                Text("Your Mood")
+                    .font(.headline)
+
+                MoodIcon(mood: currentMood)
+                    .frame(width: 50, height: 50)
+
+                Text(currentMood.description)
+                    .font(.subheadline)
+
+                Divider()
+
+                HStack {
+                    VStack {
+                        Text("Sleep")
+                        Text("\(sleepScore)/100")
+                            .font(.caption)
+                    }
+                    Spacer()
+                    VStack {
+                        Text("Activity")
+                        Text("\(activityLevel)%")
+                            .font(.caption)
+                    }
+                }
+                .padding(.horizontal)
+
+                Divider()
+
+                NavigationLink("Log Mood", destination: LogMoodView())
+                NavigationLink("History", destination: MoodHistoryView())
+            }
+            .padding()
+            .onAppear {
+                fetchHealthData()
+            }
         }
-        .padding()
+    }
+
+    func fetchHealthData() {
+        // Placeholder for integration with HealthKit or data logic
+        // Simulate data for preview/testing
+        sleepScore = 78
+        activityLevel = 63
+        currentMood = .happy
     }
 }
+
+//struct ContentView: View {
+//    var body: some View {
+//        VStack {
+//            Image("Neutral")
+//                .resizable()
+//                
+//            Text("Moodish")
+//        }
+//        .padding()
+//    }
+//}
 
 #Preview {
     ContentView()
