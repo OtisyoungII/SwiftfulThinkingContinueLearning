@@ -19,17 +19,20 @@ import HealthKit
 
 
 struct HomeView: View {
-    @State private var currentMood: Mood = .neutral
+    
     @State private var sleepScore: Int = 0
     @State private var activityLevel: Int = 0
 
     var body: some View {
         NavigationStack {
             VStack(spacing: 10) {
-                Text("Your Mood")
+                Text("Title")
                     .font(.headline)
 
-                MoodIcon(mood: currentMood)
+           if sleepScore > 0 {
+                    currentMood(sleepScore: sleepScore, activityLevel: activityLevel) <
+                   
+                }
                     .frame(width: 50, height: 50)
 
                 Text(currentMood.description)
@@ -54,13 +57,29 @@ struct HomeView: View {
 
                 Divider()
 
-                NavigationLink("Log Mood", destination: LogMoodView())
-                NavigationLink("History", destination: MoodHistoryView())
+//                NavigationLink("Log Mood", destination: LogMoodView())
+//                NavigationLink("History", destination: MoodHistoryView())
             }
             .padding()
             .onAppear {
                 fetchHealthData()
             }
+        }
+    }
+    func currentMood(_ mood: String) -> String {
+        switch mood {
+        case "Happy":
+            return "Happy"
+        case "Sad":
+            return "Sad"
+        case "Angry":
+            return "Angry"
+        case "Calm":
+            return "Calm"
+        case "Nervous":
+            return "Nervous"
+        default:
+            return "Neutral"
         }
     }
 
@@ -69,7 +88,7 @@ struct HomeView: View {
         // Simulate data for preview/testing
         sleepScore = 78
         activityLevel = 63
-        currentMood = .happy
+        let Mood = currentMood
     }
 
 //struct ContentView: View {
@@ -82,8 +101,8 @@ struct HomeView: View {
 //        }
 //        .padding()
 //    }
-//}
+}
 
 #Preview {
-    ContentView()
+
 }
