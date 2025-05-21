@@ -7,9 +7,5 @@
 
 import WatchKit
 
-let HealthStore = HKHealthStore()
 
-func requestAuthorization() {
-    let typestoread: Set<HKQuantityType
-        
-}
+

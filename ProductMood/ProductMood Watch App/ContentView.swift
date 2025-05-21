@@ -13,33 +13,28 @@
 import SwiftUI
 import HealthKit
 
-
-
-
-
-
 struct HomeView: View {
     
     @State private var sleepScore: Int = 0
     @State private var activityLevel: Int = 0
+    @State private var currentMood: String = "Neutral"
 
     var body: some View {
         NavigationStack {
-            VStack(spacing: 10) {
-                Text("Title")
+            VStack(spacing: 1) {
+                Text("Moodish")
                     .font(.headline)
-
-           if sleepScore > 0 {
-                    currentMood(sleepScore: sleepScore, activityLevel: activityLevel) <
-                   
-                }
+                    .foregroundColor(.blue)
+                
+                Image(currentMood) // Uses the mood name as the asset name
+                    .resizable()
                     .frame(width: 50, height: 50)
-
-                Text(currentMood.description)
+                
+                Text(currentMood)
                     .font(.subheadline)
-
+                
                 Divider()
-
+                
                 HStack {
                     VStack {
                         Text("Sleep")
@@ -54,9 +49,9 @@ struct HomeView: View {
                     }
                 }
                 .padding(.horizontal)
-
+                
                 Divider()
-
+                
 //                NavigationLink("Log Mood", destination: LogMoodView())
 //                NavigationLink("History", destination: MoodHistoryView())
             }
@@ -66,43 +61,31 @@ struct HomeView: View {
             }
         }
     }
-    func currentMood(_ mood: String) -> String {
-        switch mood {
-        case "Happy":
-            return "Happy"
-        case "Sad":
+    
+    func calculateMood(sleep: Int, activity: Int) -> String {
+        // Simple logic — this can be made more complex later
+        if sleep < 40 {
             return "Sad"
-        case "Angry":
-            return "Angry"
-        case "Calm":
-            return "Calm"
-        case "Nervous":
-            return "Nervous"
-        default:
+        } else if sleep >= 40 && sleep < 70 {
             return "Neutral"
+        } else if sleep >= 70 && activity > 60 {
+            return "Happy"
+        } else if activity < 20 {
+            return "Angry"
+        } else {
+            return "Calm"
         }
     }
 
     func fetchHealthData() {
-        // Placeholder for integration with HealthKit or data logic
-        // Simulate data for preview/testing
+        // Placeholder logic to simulate fetching from HealthKit
         sleepScore = 78
         activityLevel = 63
-        let Mood = currentMood
+        
+        // Update mood based on values
+        currentMood = calculateMood(sleep: sleepScore, activity: activityLevel)
     }
-
-//struct ContentView: View {
-//    var body: some View {
-//        VStack {
-//            Image("Neutral")
-//                .resizable()
-//                
-//            Text("Moodish")
-//        }
-//        .padding()
-//    }
 }
-
 #Preview {
-
+HomeView()
 }
